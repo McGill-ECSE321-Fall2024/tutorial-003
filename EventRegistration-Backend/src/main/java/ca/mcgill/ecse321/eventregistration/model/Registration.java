@@ -14,6 +14,12 @@ public class Registration {
 	@EmbeddedId
 	private Key key;
 
+	// Hibernate requires a default constructor, but it doesn't need to be public
+	// https://docs.jboss.org/hibernate/orm/6.5/userguide/html_single/Hibernate_User_Guide.html#entity-pojo
+	protected Registration() {
+		super();
+	}
+
 	public Registration(Key key) {
 		this.key = key;
 	}
