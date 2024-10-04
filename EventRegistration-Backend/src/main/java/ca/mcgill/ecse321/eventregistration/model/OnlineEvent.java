@@ -9,6 +9,10 @@ import jakarta.persistence.Entity;
 public class OnlineEvent extends Event {
 	private String url;
 
+	// Hibernate needs a no-args constructor, but it can be protected
+	protected OnlineEvent() {
+	}
+
 	public OnlineEvent(String name, Date date, Time start, Time end, int registrationLimit, String url) {
 		super(name, date, start, end, registrationLimit);
 		this.url = url;
