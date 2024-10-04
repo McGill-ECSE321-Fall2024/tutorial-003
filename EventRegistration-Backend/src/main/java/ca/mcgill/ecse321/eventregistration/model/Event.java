@@ -21,6 +21,10 @@ public abstract class Event {
 	private Time endTime;
 	private int registrationLimit;
 
+	// Hibernate needs a no-args constructor, but it can be protected
+	protected Event() {
+	}
+
 	public Event(String name, Date date, Time start, Time end, int registrationLimit) {
 		this.name = name;
 		this.date = date;

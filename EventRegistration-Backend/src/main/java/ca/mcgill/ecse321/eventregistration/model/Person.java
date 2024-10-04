@@ -16,6 +16,10 @@ public class Person {
 	private String password;
 	private Date creationDate;
 
+	// Hibernate needs a no-args constructor, but it can be protected
+	protected Person() {
+	}
+
 	public Person(String name, String emailAddress, String password, Date creationDate) {
 		this.name = name;
 		this.emailAddress = emailAddress;

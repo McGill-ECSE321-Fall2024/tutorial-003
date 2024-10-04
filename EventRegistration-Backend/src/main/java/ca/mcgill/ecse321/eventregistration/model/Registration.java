@@ -13,6 +13,18 @@ public class Registration {
 	@EmbeddedId
 	private Key key;
 
+	// Hibernate needs a no-args constructor, but it can be protected
+	protected Registration() {
+	}
+
+	public Registration(Key key) {
+		this.key = key;
+	}
+
+	public Key getKey() {
+		return key;
+	}
+
 	// See
 	// https://docs.jboss.org/hibernate/orm/6.5/userguide/html_single/Hibernate_User_Guide.html#identifiers-composite
 	// for the rules on composite IDs.
@@ -25,6 +37,11 @@ public class Registration {
 
 		public Key() {
 			super();
+		}
+
+		public Key(Person registrant, Event event) {
+			this.registrant = registrant;
+			this.event = event;
 		}
 
 		public Person getRegistrant() {

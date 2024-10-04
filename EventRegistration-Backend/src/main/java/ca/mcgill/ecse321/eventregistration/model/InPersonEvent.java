@@ -9,6 +9,10 @@ import jakarta.persistence.Entity;
 public class InPersonEvent extends Event {
 	private String address;
 
+	// Hibernate needs a no-args constructor, but it can be protected
+	protected InPersonEvent() {
+	}
+
 	public InPersonEvent(String name, Date date, Time start, Time end, int registrationLimit, String address) {
 		super(name, date, start, end, registrationLimit);
 		this.address = address;
