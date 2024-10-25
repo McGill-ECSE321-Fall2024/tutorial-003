@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.eventregistration.model;
 
 import java.sql.Date;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,5 +46,28 @@ public class Person {
 
 	public Date getCreationDate() {
 		return creationDate;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Person)) {
+			return false;
+		}
+		Person that = (Person) obj;
+		return this.id == that.id
+				&& this.name.equals(that.name)
+				&& this.emailAddress.equals(that.emailAddress)
+				&& this.password.equals(that.password)
+				&& this.creationDate.equals(that.creationDate);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(
+				this.id,
+				this.name,
+				this.emailAddress,
+				this.password,
+				this.creationDate);
 	}
 }

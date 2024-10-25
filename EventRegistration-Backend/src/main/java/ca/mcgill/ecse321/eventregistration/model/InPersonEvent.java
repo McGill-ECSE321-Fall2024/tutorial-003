@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.eventregistration.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 
@@ -20,5 +21,19 @@ public class InPersonEvent extends Event {
 
 	public String getAddress() {
 		return address;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof InPersonEvent)) {
+			return false;
+		}
+		InPersonEvent that = (InPersonEvent) obj;
+		return super.equals(that) && this.address.equals(that.address);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), this.address);
 	}
 }

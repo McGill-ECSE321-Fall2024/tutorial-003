@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.eventregistration.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -55,5 +56,30 @@ public abstract class Event {
 
 	public int getRegistrationLimit() {
 		return registrationLimit;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Event)) {
+			return false;
+		}
+		Event that = (Event) obj;
+		return this.id == that.id
+				&& this.name.equals(that.name)
+				&& this.date.equals(that.date)
+				&& this.startTime.equals(that.startTime)
+				&& this.endTime.equals(that.endTime)
+				&& this.registrationLimit == that.registrationLimit;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(
+				this.id,
+				this.name,
+				this.date,
+				this.startTime,
+				this.endTime,
+				this.registrationLimit);
 	}
 }

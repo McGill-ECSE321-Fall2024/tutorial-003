@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.eventregistration.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 
@@ -20,5 +21,19 @@ public class OnlineEvent extends Event {
 
 	public String getUrl() {
 		return url;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof OnlineEvent)) {
+			return false;
+		}
+		OnlineEvent that = (OnlineEvent) obj;
+		return super.equals(that) && this.url.equals(that.url);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), this.url);
 	}
 }

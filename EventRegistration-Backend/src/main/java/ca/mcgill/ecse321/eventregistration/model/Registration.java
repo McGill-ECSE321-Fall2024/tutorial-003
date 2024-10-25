@@ -25,6 +25,20 @@ public class Registration {
 		return key;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Registration)) {
+			return false;
+		}
+		Registration that = (Registration) obj;
+		return this.key.equals(that.key);
+	}
+
+	@Override
+	public int hashCode() {
+		return this.key.hashCode();
+	}
+
 	// See
 	// https://docs.jboss.org/hibernate/orm/6.5/userguide/html_single/Hibernate_User_Guide.html#identifiers-composite
 	// for the rules on composite IDs.
