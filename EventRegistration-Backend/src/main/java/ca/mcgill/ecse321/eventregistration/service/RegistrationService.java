@@ -1,8 +1,10 @@
 package ca.mcgill.ecse321.eventregistration.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import ca.mcgill.ecse321.eventregistration.exception.EventRegistrationException;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
@@ -33,7 +35,12 @@ public class RegistrationService {
     }
 
     public Registration findRegistration(Person person, Event event) {
-        return registrationRepo.findRegistrationByKey(new Registration.Key(person, event));
+        Registration reg = registrationRepo.findRegistrationByKey(new Registration.Key(person, event));
+        if (reg == null) {
+            throw new EventRegistrationException(HttpStatus.NOT_FOUND,
+                    String.format("Person %d is not registered for event %d.", person.getId(), event.getId()));
+        }
+        return reg;
     }
 
     public int countRegistrantsForEvent(Event event) {

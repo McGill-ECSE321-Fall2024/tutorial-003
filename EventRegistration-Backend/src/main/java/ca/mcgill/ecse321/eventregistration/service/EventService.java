@@ -6,8 +6,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import ca.mcgill.ecse321.eventregistration.exception.EventRegistrationException;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.InPersonEvent;
 import ca.mcgill.ecse321.eventregistration.model.OnlineEvent;
@@ -37,7 +39,12 @@ public class EventService {
 
     @Transactional
     public Event findEventById(int id) {
-        return eventRepo.findEventById(id);
+        Event event = eventRepo.findEventById(id);
+        if (event == null) {
+            throw new EventRegistrationException(HttpStatus.NOT_FOUND,
+                    String.format("There is no event with ID %d.", id));
+        }
+        return event;
     }
 
     @Transactional
