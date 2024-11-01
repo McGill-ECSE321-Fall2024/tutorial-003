@@ -4,8 +4,10 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import ca.mcgill.ecse321.eventregistration.exception.EventRegistrationException;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.repository.PersonRepository;
 import jakarta.transaction.Transactional;
@@ -23,6 +25,11 @@ public class PersonService {
 	}
 
 	public Person findPersonById(int pid) {
-		return repo.findPersonById(pid);
+		Person person = repo.findPersonById(pid);
+		if (person == null) {
+			throw new EventRegistrationException(HttpStatus.NOT_FOUND,
+					String.format("There is no person with ID %d.", pid));
+		}
+		return person;
 	}
 }
