@@ -10,6 +10,10 @@ public class PersonResponseDto {
 	private String emailAddress;
 	private LocalDate creationDate;
 
+	// Jackson needs a default constructor
+	protected PersonResponseDto() {
+	}
+
 	public PersonResponseDto(Person person) {
 		this.id = person.getId();
 		this.name = person.getName();

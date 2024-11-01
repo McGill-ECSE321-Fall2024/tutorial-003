@@ -5,6 +5,12 @@ public class PersonRequestDto {
 	private String emailAddress;
 	private String password;
 
+	public PersonRequestDto(String name, String emailAddress, String password) {
+		this.name = name;
+		this.emailAddress = emailAddress;
+		this.password = password;
+	}
+
 	public String getName() {
 		return name;
 	}
