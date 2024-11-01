@@ -11,6 +11,7 @@ import ca.mcgill.ecse321.eventregistration.dto.PersonRequestDto;
 import ca.mcgill.ecse321.eventregistration.dto.PersonResponseDto;
 import ca.mcgill.ecse321.eventregistration.model.Person;
 import ca.mcgill.ecse321.eventregistration.service.PersonService;
+import jakarta.validation.Valid;
 
 @RestController
 public class PersonController {
@@ -24,7 +25,7 @@ public class PersonController {
 	 * @return The created person, including their ID.
 	 */
 	@PostMapping("/people")
-	public PersonResponseDto createPerson(@RequestBody PersonRequestDto personToCreate) {
+	public PersonResponseDto createPerson(@Valid @RequestBody PersonRequestDto personToCreate) {
 		Person createdPerson = personService.createPerson(
 				personToCreate.getName(),
 				personToCreate.getEmailAddress(),

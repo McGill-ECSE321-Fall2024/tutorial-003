@@ -17,6 +17,7 @@ import ca.mcgill.ecse321.eventregistration.dto.EventSummaryDto;
 import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.service.EventService;
 import ca.mcgill.ecse321.eventregistration.service.RegistrationService;
+import jakarta.validation.Valid;
 
 @RestController
 public class EventController {
@@ -26,7 +27,7 @@ public class EventController {
     private RegistrationService registrationService;
 
     @PostMapping("/events")
-    public EventResponseDto createEvent(@RequestBody EventRequestDto request) {
+    public EventResponseDto createEvent(@Valid @RequestBody EventRequestDto request) {
         Event createdEvent;
         switch (request.getType()) {
             case ONLINE -> {
