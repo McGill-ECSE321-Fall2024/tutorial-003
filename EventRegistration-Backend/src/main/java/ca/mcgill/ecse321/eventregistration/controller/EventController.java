@@ -32,12 +32,13 @@ public class EventController {
         switch (request.getType()) {
             case ONLINE -> {
                 createdEvent = eventService.createOnlineEvent(request.getName(), request.getDate(),
-                        request.getStartTime(), request.getEndTime(), request.getRegistrationLimit(), request.getUrl());
+                        request.getStartTime(), request.getEndTime(), request.getRegistrationLimit(),
+                        request.getLocation());
             }
             case IN_PERSON -> {
                 createdEvent = eventService.createInPersonEvent(request.getName(), request.getDate(),
                         request.getStartTime(), request.getEndTime(), request.getRegistrationLimit(),
-                        request.getAddress());
+                        request.getLocation());
             }
             default -> throw new IllegalArgumentException("Invalid event type.");
         }
