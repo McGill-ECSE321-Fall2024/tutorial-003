@@ -10,6 +10,11 @@ public class OnlineEventResponseDto extends EventResponseDto {
         this.url = event.getUrl();
     }
 
+    @Override
+    public EventType getType() {
+        return EventType.ONLINE;
+    }
+
     public String getUrl() {
         return url;
     }

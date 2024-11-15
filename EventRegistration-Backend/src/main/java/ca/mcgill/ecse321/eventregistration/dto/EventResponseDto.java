@@ -9,7 +9,6 @@ import ca.mcgill.ecse321.eventregistration.model.OnlineEvent;
 
 public abstract class EventResponseDto {
     private int id;
-    private EventType type;
     private String name;
     private LocalDate date;
     private LocalTime startTime;
@@ -19,7 +18,6 @@ public abstract class EventResponseDto {
 
     public EventResponseDto(Event event, int numRegistered) {
         this.id = event.getId();
-        this.type = EventType.ONLINE;
         this.name = event.getName();
         this.date = event.getDate().toLocalDate();
         this.startTime = event.getStartTime().toLocalTime();
@@ -42,12 +40,10 @@ public abstract class EventResponseDto {
         }
     }
 
+    public abstract EventType getType();
+
     public int getId() {
         return id;
-    }
-
-    public EventType getType() {
-        return type;
     }
 
     public String getName() {

@@ -10,6 +10,11 @@ public class InPersonEventResponseDto extends EventResponseDto {
         this.address = event.getAddress();
     }
 
+    @Override
+    public EventType getType() {
+        return EventType.IN_PERSON;
+    }
+
     public String getAddress() {
         return address;
     }
