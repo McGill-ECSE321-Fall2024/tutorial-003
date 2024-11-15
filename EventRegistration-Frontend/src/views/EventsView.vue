@@ -126,7 +126,7 @@ table {
 }
 
 td, th {
-	border: 1px solid white;
+	border: 1px solid var(--color-border);
 	padding: 0.25em;
 }
 </style>
