@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Event Registration</title>
+    <script src="./index.js"></script>
+    <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+    <h1>Event Registration</h1>
+    <h2>New Event</h2>
+    <div>
+        <select>
+            <option value="IN_PERSON">In person</option>
+            <option value="ONLINE">Online</option>
+        </select>
+        <input type="text" placeholder="Name" />
+        <input type="date" placeholder="Date" />
+        <input type="time" placeholder="Start Time" />
+        <input type="time" placeholder="End Time" />
+        <input type="text" placeholder="Registration Limit" />
+        <input type="text" placeholder="Location" />
+        <button id="create-btn">Create Event</button>
+        <button class="danger-btn">Clear</button>
+        <button class="danger-btn">Delete All Events</button>
+    </div>
+    <h2>Events</h2>
+    <table>
+        <tbody id="events-tbody">
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Limit</th>
+            </tr>
+            <tr>
+                <td>Party</td>
+                <td>2024-03-23</td>
+                <td>1</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

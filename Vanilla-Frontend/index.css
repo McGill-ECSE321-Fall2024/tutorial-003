@@ -1,0 +1,18 @@
+html {
+	font-family: Ariel, sans-serif;
+}
+
+h2 {
+	text-decoration: underline;
+	padding-top: 0.5em;
+}
+
+.danger-btn {
+	color: red;
+	border: 1px solid red;
+}
+
+#create-btn {
+	color: green;
+	border: 1px solid green;
+}
