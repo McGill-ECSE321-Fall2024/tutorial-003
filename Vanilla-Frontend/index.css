@@ -1,0 +1,23 @@
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+td,
+th {
+    padding: 0.5em;
+    border: 1px solid black;
+}
+
+.danger-btn {
+    border: 1px solid red;
+    color: red;
+}
+
+#create-btn {
+    border: 1px solid green;
+    color: green;
+}
