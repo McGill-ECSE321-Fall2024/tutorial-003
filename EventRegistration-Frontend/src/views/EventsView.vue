@@ -18,7 +18,7 @@
 		</div>
 		<h2>Events</h2>
 		<table>
-			<tbody id="events-tbody">
+			<tbody>
 				<tr>
 					<th>Name</th>
 					<th>Date</th>
@@ -38,6 +38,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
+	// NOTE: it's baseURL, not baseUrl
 	baseURL: "http://localhost:8080"
 });
 
