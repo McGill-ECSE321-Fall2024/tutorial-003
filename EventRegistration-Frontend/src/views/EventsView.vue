@@ -35,6 +35,12 @@
 </template>
 
 <script>
+import axios from "axios";
+
+const axiosClient = axios.create({
+	baseURL: "http://localhost:8080"
+});
+
 export default {
 	name: "events",
 	data() {
@@ -52,8 +58,13 @@ export default {
 			newEventLocation: null
 		};
 	},
+	async created() {
+		const response = await axiosClient.get("/events");
+		// TODO: error handling
+		this.events = response.data.events;
+	},
 	methods: {
-		createEvent() {
+		async createEvent() {
 			const newEvent = {
 				type: this.newEventType,
 				name: this.newEventName,
@@ -63,8 +74,10 @@ export default {
 				registrationLimit: this.newEventRegLimit,
 				location: this.newEventLocation
 			};
-			this.events.push(newEvent);
-			this.clearInputs()
+			const response = await axiosClient.post("/events", newEvent);
+			// TODO: error handling
+			this.events.push(response.data);
+			this.clearInputs();
 		},
 		clearInputs() {
 			this.newEventType = "IN_PERSON";
