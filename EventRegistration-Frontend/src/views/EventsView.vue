@@ -25,7 +25,19 @@
 					<th>Type</th>
 				</tr>
 				<tr v-for="e in events">
-					<td>{{ e.name }}</td>
+					<td>
+						<!-- (Almost) vanilla HTML way: just use <a> tag.
+						     Use v-bind: to dynamically construct href.
+						     This reloads the whole page.
+						 -->
+						<!-- <a v-bind:href="`/event/${e.id}`">{{ e.name }}</a> -->
+						<!-- The recommended way to do it with vue router.
+						     https://router.vuejs.org/guide/
+						     If you want to navigate using JavaScript, see
+						     https://router.vuejs.org/guide/essentials/navigation.html
+						 -->
+						<RouterLink v-bind:to="{ name: 'event-details', params: { eid: e.id } }">{{ e.name }}</RouterLink>
+					</td>
 					<td>{{ e.date }}</td>
 					<td>{{ e.type === "IN_PERSON" ? "In person" : "Online" }}</td>
 				</tr>
@@ -36,6 +48,7 @@
 
 <script>
 import axios from "axios";
+import { RouterLink } from "vue-router";
 
 const axiosClient = axios.create({
 	// NOTE: it's baseURL, not baseUrl
@@ -46,10 +59,7 @@ export default {
 	name: "events",
 	data() {
 		return {
-			events: [
-				{ type: "IN_PERSON", name: "Tim's Birthday Party", date: "2024-11-15", startTime: "13:35:00", endTime: "15:25:00", registrationLimit: 0, location: "Tim's house" },
-				{ type: "ONLINE", name: "Online event", date: "2024-11-16", startTime: "12:00:00", endTime: "13:00:00", registrationLimit: 100, location: "Zoom" },
-			],
+			events: [],
 			newEventType: "IN_PERSON",
 			newEventName: null,
 			newEventDate: null,
