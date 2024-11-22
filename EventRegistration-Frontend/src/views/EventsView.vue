@@ -17,6 +17,7 @@
 			<button class="danger-btn" @click="clearInputs">Clear</button>
 		</div>
 		<h2>Events</h2>
+		<p v-if="errorMessage" class="danger-btn">{{ errorMessage }}</p>
 		<table>
 			<tbody>
 				<tr>
@@ -48,7 +49,6 @@
 
 <script>
 import axios from "axios";
-import { RouterLink } from "vue-router";
 
 const axiosClient = axios.create({
 	// NOTE: it's baseURL, not baseUrl
@@ -66,13 +66,18 @@ export default {
 			newEventStartTime: null,
 			newEventEndTime: null,
 			newEventRegLimit: null,
-			newEventLocation: null
+			newEventLocation: null,
+			errorMessage: null
 		};
 	},
 	async created() {
-		const response = await axiosClient.get("/events");
-		// TODO: error handling
-		this.events = response.data.events;
+		try {
+			const response = await axiosClient.get("/events");
+			this.events = response.data.events;
+		}
+		catch (e) {
+			this.errorMessage = "Failed to fetch events.";
+		}
 	},
 	methods: {
 		async createEvent() {
@@ -85,8 +90,12 @@ export default {
 				registrationLimit: this.newEventRegLimit,
 				location: this.newEventLocation
 			};
-			const response = await axiosClient.post("/events", newEvent);
-			// TODO: error handling
+			try {
+				const response = await axiosClient.post("/events", newEvent);
+			}
+			catch (e) {
+				this.errorMessage = "Failed to create event.";
+			}
 			this.events.push(response.data);
 			this.clearInputs();
 		},
